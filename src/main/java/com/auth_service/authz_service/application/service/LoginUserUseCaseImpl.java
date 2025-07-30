@@ -1,0 +1,39 @@
+package com.auth_service.authz_service.application.service;
+
+import com.auth_service.authz_service.application.usecase.LoginUserUseCase;
+import com.auth_service.authz_service.domain.model.User;
+import com.auth_service.authz_service.domain.service.PasswordEncoder;
+import com.auth_service.authz_service.domain.service.TokenService;
+import com.auth_service.authz_service.domain.service.UserRepository;
+
+public class LoginUserUseCaseImpl implements LoginUserUseCase {
+
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final TokenService tokenService;
+
+    public LoginUserUseCaseImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, TokenService tokenService) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.tokenService = tokenService;
+    }
+
+    @Override
+    public LoginResponse login(LoginRequest request) {
+        User user = userRepository.findByEmail(request.email())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid credentials"));
+
+        if (!user.isActive()) {
+            throw new IllegalStateException("User is deactivated");
+        }
+
+        if (!passwordEncoder.matches(request.password(), user.getPasswordHash())) {
+            throw new IllegalArgumentException("Invalid credentials");
+        }
+
+        String accessToken = tokenService.generateAccessToken(user);
+        String refreshToken = tokenService.generateRefreshToken(user);
+
+        return new LoginResponse(accessToken, refreshToken);
+    }
+}
