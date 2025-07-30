@@ -8,9 +8,9 @@ import java.util.Set;
 
 @Data
 public class User {
-    private Long id;
-    private String email;
-    private String passwordHash;
-    private Set<Role> roles;
-    private boolean active;
+    private final Long id;
+    private final String email;
+    private final String passwordHash;
+    private final Set<Role> roles;
+    private final boolean active;
 }

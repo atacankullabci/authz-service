@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Data
 public class Role {
-    private Long id;
-    private String name;
-    private Set<Permission> permissions;
+    private final Long id;
+    private final String name;
+    private final Set<Permission> permissions;
 }
