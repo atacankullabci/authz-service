@@ -1,4 +1,4 @@
-package com.authservice.domain.service;
+package com.authservice.domain.repository;
 
 import com.authservice.domain.model.User;
 

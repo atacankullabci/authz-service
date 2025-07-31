@@ -4,8 +4,8 @@ import com.authservice.application.usecase.RegisterUserUseCase;
 import com.authservice.domain.model.Permission;
 import com.authservice.domain.model.Role;
 import com.authservice.domain.model.User;
+import com.authservice.domain.repository.UserRepository;
 import com.authservice.domain.service.PasswordEncoder;
-import com.authservice.domain.service.UserRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Set;

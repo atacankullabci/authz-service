@@ -1,7 +1,7 @@
 package com.authservice.infrastructure.persistence;
 
 import com.authservice.domain.model.User;
-import com.authservice.domain.service.UserRepository;
+import com.authservice.domain.repository.UserRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;

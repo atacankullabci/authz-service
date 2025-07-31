@@ -6,4 +6,8 @@ public interface TokenService {
     String generateAccessToken(User user);
 
     String generateRefreshToken(User user);
+
+    void revokeRefreshToken(String token);
+
+    boolean isRefreshTokenValid(String token);
 }

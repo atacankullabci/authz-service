@@ -2,9 +2,9 @@ package com.authservice.application.service;
 
 import com.authservice.application.usecase.LoginUserUseCase;
 import com.authservice.domain.model.User;
+import com.authservice.domain.repository.UserRepository;
 import com.authservice.domain.service.PasswordEncoder;
 import com.authservice.domain.service.TokenService;
-import com.authservice.domain.service.UserRepository;
 import org.springframework.stereotype.Component;
 
 @Component

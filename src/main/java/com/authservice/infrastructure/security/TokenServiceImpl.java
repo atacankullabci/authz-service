@@ -2,6 +2,7 @@ package com.authservice.infrastructure.security;
 
 import com.authservice.domain.model.Role;
 import com.authservice.domain.model.User;
+import com.authservice.domain.repository.RefreshTokenRepository;
 import com.authservice.domain.service.TokenService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -19,15 +20,17 @@ public class TokenServiceImpl implements TokenService {
     private final Key key;
     private final long accessTokenValidityMs;
     private final long refreshTokenValidityMs;
+    private final RefreshTokenRepository refreshTokenRepository;
 
     public TokenServiceImpl(
             @Value("${security.jwt.secret}") String secret,
             @Value("${security.jwt.access-token-validity-ms}") long accessTokenValidityMs,
-            @Value("${security.jwt.refresh-token-validity-ms}") long refreshTokenValidityMs
+            @Value("${security.jwt.refresh-token-validity-ms}") long refreshTokenValidityMs, RefreshTokenRepository refreshTokenRepository
     ) {
         this.key = Keys.hmacShaKeyFor(secret.getBytes());
         this.accessTokenValidityMs = accessTokenValidityMs;
         this.refreshTokenValidityMs = refreshTokenValidityMs;
+        this.refreshTokenRepository = refreshTokenRepository;
     }
 
     @Override
@@ -37,7 +40,19 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public String generateRefreshToken(User user) {
-        return buildToken(user, refreshTokenValidityMs);
+        String token = buildToken(user, refreshTokenValidityMs);
+        refreshTokenRepository.save(token, user.getEmail(), refreshTokenValidityMs);
+        return token;
+    }
+
+    @Override
+    public void revokeRefreshToken(String token) {
+        refreshTokenRepository.delete(token);
+    }
+
+    @Override
+    public boolean isRefreshTokenValid(String token) {
+        return refreshTokenRepository.exists(token);
     }
 
     private String buildToken(User user, long expiry) {
