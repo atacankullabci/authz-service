@@ -55,6 +55,16 @@ public class TokenServiceImpl implements TokenService {
         return refreshTokenRepository.exists(token);
     }
 
+    @Override
+    public String extractEmail(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
+    }
+
     private String buildToken(User user, long expiry) {
         return Jwts.builder()
                 .setSubject(user.getEmail())

@@ -10,4 +10,6 @@ public interface TokenService {
     void revokeRefreshToken(String token);
 
     boolean isRefreshTokenValid(String token);
+
+    String extractEmail(String token);
 }
