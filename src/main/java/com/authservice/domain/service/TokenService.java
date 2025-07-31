@@ -1,6 +1,6 @@
-package com.auth_service.authz_service.domain.service;
+package com.authservice.domain.service;
 
-import com.auth_service.authz_service.domain.model.User;
+import com.authservice.domain.model.User;
 
 public interface TokenService {
     String generateAccessToken(User user);

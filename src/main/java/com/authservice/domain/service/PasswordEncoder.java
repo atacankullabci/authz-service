@@ -1,4 +1,4 @@
-package com.auth_service.authz_service.domain.service;
+package com.authservice.domain.service;
 
 public interface PasswordEncoder {
     String encode(String rawPassword);

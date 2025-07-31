@@ -1,0 +1,8 @@
+spring.application.name:
+  authz-service
+
+security:
+  jwt:
+    secret: keywillbepluggedin
+    access-token-validity-ms: 900000  # 15 mins
+    refresh-token-validity-ms: 1209600000  # 14 days

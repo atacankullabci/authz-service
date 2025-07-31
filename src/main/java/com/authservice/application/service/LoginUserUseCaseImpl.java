@@ -1,10 +1,10 @@
-package com.auth_service.authz_service.application.service;
+package com.authservice.application.service;
 
-import com.auth_service.authz_service.application.usecase.LoginUserUseCase;
-import com.auth_service.authz_service.domain.model.User;
-import com.auth_service.authz_service.domain.service.PasswordEncoder;
-import com.auth_service.authz_service.domain.service.TokenService;
-import com.auth_service.authz_service.domain.service.UserRepository;
+import com.authservice.application.usecase.LoginUserUseCase;
+import com.authservice.domain.model.User;
+import com.authservice.domain.service.PasswordEncoder;
+import com.authservice.domain.service.TokenService;
+import com.authservice.domain.service.UserRepository;
 
 public class LoginUserUseCaseImpl implements LoginUserUseCase {
 

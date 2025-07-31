@@ -1,4 +1,4 @@
-package com.auth_service.authz_service.domain.model;
+package com.authservice.domain.model;
 
 import lombok.Data;
 

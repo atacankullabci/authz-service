@@ -1,4 +1,4 @@
-package com.auth_service.authz_service.application.usecase;
+package com.authservice.application.usecase;
 
 // Input port
 
