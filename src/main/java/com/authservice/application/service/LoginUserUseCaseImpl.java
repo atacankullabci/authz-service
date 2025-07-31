@@ -5,7 +5,9 @@ import com.authservice.domain.model.User;
 import com.authservice.domain.service.PasswordEncoder;
 import com.authservice.domain.service.TokenService;
 import com.authservice.domain.service.UserRepository;
+import org.springframework.stereotype.Component;
 
+@Component
 public class LoginUserUseCaseImpl implements LoginUserUseCase {
 
     private final UserRepository userRepository;

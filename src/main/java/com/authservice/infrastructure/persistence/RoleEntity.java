@@ -1,11 +1,9 @@
 package com.authservice.infrastructure.persistence;
 
 import jakarta.persistence.*;
-import lombok.Data;
 
 import java.util.Set;
 
-@Data
 @Entity
 @Table(name = "roles")
 public class RoleEntity {
@@ -18,4 +16,28 @@ public class RoleEntity {
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "role_permissions", joinColumns = @JoinColumn(name = "role_id"))
     private Set<PermissionEntity> permissions;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<PermissionEntity> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(Set<PermissionEntity> permissions) {
+        this.permissions = permissions;
+    }
 }

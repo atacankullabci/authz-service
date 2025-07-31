@@ -1,22 +1,25 @@
 spring:
-  application:
-    name: authz-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/auth_service
-    username: admin
-    password: secret123
+    url: jdbc:postgresql://postgres:5432/authz
+    username: authz_user
+    password: secret
     driver-class-name: org.postgresql.Driver
+
   jpa:
-    show-sql: true
     hibernate:
-      ddl-auto: validate
-    properties:
-      hibernate:
-        format_sql: true  # nicely formats SQL
+      ddl-auto: update
+    show-sql: true
+
+  data:
+    redis:
+      host: redis
+      port: 6379
+
+server:
+  port: 8080
 
 security:
   jwt:
     secret: 8toa04XFZn7AjGBVQADfbYvaSKTES4QF7sxcDH2boNHEnQt15jrBHdXvDwyK8a1fV2+XDhmHzC8ugNYjHNRlJNa6Vl21cE3oyCdDVb/a1/GS3r/DmoPGEbOfjjgF7/eIhccTRIUjkMC7Ej13DRq7WQ6UhkxJ0bI9sp4Kd6O2VjOJpKVyRLkIqY4P5C76h3CnX9SxGrCISRBk4pxVWL7UZeOScF7mcnQHHQf3NgYDN0/8AI2rN/iJu/4sU3iMm9MG9orQE3RgJ1X9G7jettukEV/h8Y+I9UMM3icmBAnjzzaIxbe8v8pbfQnVovgfc/Jr0BN/jG4UsqaVJnhbwzsusA==
-    access-token-validity-ms: 900000  # 15 mins
-    refresh-token-validity-ms: 1209600000  # 14 days
-
+    access-token-validity-ms: 900000
+    refresh-token-validity-ms: 1209600000

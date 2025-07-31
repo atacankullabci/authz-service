@@ -6,9 +6,11 @@ import com.authservice.domain.model.Role;
 import com.authservice.domain.model.User;
 import com.authservice.domain.service.PasswordEncoder;
 import com.authservice.domain.service.UserRepository;
+import org.springframework.stereotype.Component;
 
 import java.util.Set;
 
+@Component
 public class RegisterUserUseCaseImpl implements RegisterUserUseCase {
 
     private final UserRepository userRepository;
@@ -18,7 +20,6 @@ public class RegisterUserUseCaseImpl implements RegisterUserUseCase {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
-
 
     @Override
     public void register(RegisterUserCommand command) {
